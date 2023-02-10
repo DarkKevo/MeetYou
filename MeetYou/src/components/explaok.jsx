@@ -42,12 +42,14 @@ export function DataContextProvider(props) {
   }
 
   useEffect(() => {
-    setData(ReadData())
+    ReadData()
+      .then((r) => setData(r))
+      .catch((e) => console.error(e));
   }, []);
 
   return (
-    <dataContext.Provider value={{ dataUser, VerifyUser, CreateUser }}>
+    <DataContextProvider.Provider value={{ dataUser, VerifyUser, CreateUser }}>
       {props.children}
-    </dataContext.Provider>
+    </DataContextProvider.Provider>
   );
 }
