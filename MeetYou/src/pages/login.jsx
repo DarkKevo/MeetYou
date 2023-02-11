@@ -4,7 +4,7 @@ import { dataContext } from '../context/DataContext';
 import { useState, useContext } from 'react';
 
 export function Login() {
-  const { VerifyUser } = useContext(dataContext);
+  const { VerifyUser, SesionActually } = useContext(dataContext);
   const [user, setUser] = useState('');
   const [pwd, setPwd] = useState('');
 
@@ -13,12 +13,13 @@ export function Login() {
     VerifyUser(user, pwd);
     setUser('');
     setPwd('');
+    console.log(SesionActually);
   };
 
   return (
     <div className='login-container'>
-      <nav>
-        <img src='./src/assets/meetYou.png' />
+      <nav id='nav-login'>
+        <img id='Imgnav' src='./src/assets/meetYou.png' />
       </nav>
       <div className='form-container'>
         <form>

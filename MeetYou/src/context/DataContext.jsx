@@ -1,9 +1,15 @@
 import { createContext, useState, useEffect } from 'react';
 
-export const dataContext = createContext()
+export const dataContext = createContext();
 
 export function DataContextProvider(props) {
   const [dataUser, setData] = useState([]);
+
+  var SesionActually = {
+    username: null,
+    sesion: false,
+    icon: null,
+  };
 
   function ReadData() {
     if (localStorage.getItem('DataUser') === null) {
@@ -35,20 +41,27 @@ export function DataContextProvider(props) {
   function VerifyUser(user, pwd) {
     let a = dataUser.filter((i) => i.user !== user && i.pwd !== pwd);
     if (a.length < dataUser.length) {
-      alert("Si iniciaste")
+      SesionActually.username = user;
+      SesionActually.sesion = true;
+      a = dataUser.filter((i) => i.user === user && i.pwd === pwd);
+      SesionActually.icon = a[0].icon;
       return true;
     } else {
-      alert("No inciaste")
+      alert('No inciaste');
+      SesionActually.username = null;
+      SesionActually.sesion = false;
       return false;
     }
   }
 
   useEffect(() => {
-    setData(ReadData())
+    setData(ReadData());
   }, []);
 
   return (
-    <dataContext.Provider value={{ dataUser, VerifyUser, CreateUser }}>
+    <dataContext.Provider
+      value={{ dataUser, VerifyUser, CreateUser, SesionActually }}
+    >
       {props.children}
     </dataContext.Provider>
   );

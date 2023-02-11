@@ -28,8 +28,8 @@ export function LoginCreate() {
 
   return (
     <div className='login-container'>
-      <nav>
-        <img src='./src/assets/meetYou.png' />
+      <nav id='nav-login'>
+        <img id='Imgnav' src='./src/assets/meetYou.png' />
       </nav>
       <div className='form-container'>
         <form id='formCreate' onSubmit={form}>
@@ -68,7 +68,7 @@ export function LoginCreate() {
         <div className='visor'>
           <h2>Your Logo Visor</h2>
           <img className='imgIcon' src={icon} />
-          <h2>{user}</h2>
+          <h2 id='tituloImage'>{user}</h2>
         </div>
       </div>
     </div>
