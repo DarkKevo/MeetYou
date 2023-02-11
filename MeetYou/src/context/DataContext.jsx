@@ -33,10 +33,12 @@ export function DataContextProvider(props) {
   }
 
   function VerifyUser(user, pwd) {
-    let a = dataUser.filter((i) => i.usuario !== user && i.password !== pwd);
+    let a = dataUser.filter((i) => i.user !== user && i.pwd !== pwd);
     if (a.length < dataUser.length) {
+      alert("Si iniciaste")
       return true;
     } else {
+      alert("No inciaste")
       return false;
     }
   }

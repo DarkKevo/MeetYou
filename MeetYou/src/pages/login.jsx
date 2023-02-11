@@ -1,7 +1,20 @@
 import React from 'react';
 import '../css/LoginStyles.css';
+import { dataContext } from '../context/DataContext';
+import { useState, useContext } from 'react';
 
 export function Login() {
+  const { VerifyUser } = useContext(dataContext);
+  const [user, setUser] = useState('');
+  const [pwd, setPwd] = useState('');
+
+  const verify = (e) => {
+    e.preventDefault();
+    VerifyUser(user, pwd);
+    setUser('');
+    setPwd('');
+  };
+
   return (
     <div className='login-container'>
       <nav>
@@ -11,12 +24,30 @@ export function Login() {
         <form>
           <div className='container-inputs'>
             <h2>Iniciar Sesion</h2>
-            <input type='text' placeholder='Usuario' />
-            <input type='password' placeholder='Contraseña' />
+            <input
+              onChange={(e) => {
+                setUser(e.target.value);
+              }}
+              type='text'
+              placeholder='Usuario'
+              value={user}
+            />
+            <input
+              onChange={(e) => {
+                setPwd(e.target.value);
+              }}
+              type='password'
+              placeholder='Contraseña'
+              value={pwd}
+            />
           </div>
           <div className='container-buttons'>
-            <button id='create'>Crear Cuenta</button>
-            <button id='login'>Iniciar Sesion</button>
+            <a href='/Create' id='create'>
+              Crear Cuenta
+            </a>
+            <button id='login' onClick={verify}>
+              Iniciar Sesion
+            </button>
           </div>
         </form>
       </div>
