@@ -125,7 +125,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  padding: 0.2rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
   margin-top: 1.5rem;
   background-color: #74deed;
   border-radius: 5px;
@@ -156,7 +157,7 @@
 }
 
 #publicar-button:hover {
-    background-color: #434972;
+  background-color: #434972;
 }
 
 .form-tweet-container {
@@ -172,9 +173,26 @@
 }
 
 .form-tweet-container form input {
-    width: 60%;
+  width: 60%;
 }
 
 .form-tweet-container form button {
-    width: 35%;
+  width: 35%;
+}
+
+.TweetList {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+}
+
+.container-cards {
+  width: 100%;
+}
+
+#NoTweets {
+  margin-top: 20vh;
 }

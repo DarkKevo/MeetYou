@@ -4,33 +4,36 @@ import uuid from 'react-uuid';
 export const dataContext = createContext();
 
 export function DataContextProvider(props) {
-  const [dataUser, setData] = useState([]);
-  const [dataTweet, setTweet] = useState([]);
+  const [dataUsers, setData] = useState([]);
+  const [dataTweets, setTweet] = useState([]);
 
-  var SesionActually = {
-    username: null,
-    sesion: false,
-    icon: null,
-  };
+  function Log_Out() {
+    localStorage.removeItem('Sesion');
+    window.location.href = '/';
+  }
 
-  function CreateTweet(text) {
+  function CreateTweet(text, icon, user) {
     let date = new Date();
-    let data_time = `${date.getDate}/${date.getMonth}/${date.getFullYear} a las ${date.getHours}:${date.getMinutes}`;
+    let data_time = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} a las ${date.getHours()}:${date.getMinutes()}`;
     let object = {
+      icon: icon,
+      user: user,
       text: text,
       time: data_time,
       favorite: false,
-      id: none,
+      id: uuid(),
     };
 
     if (localStorage.getItem('DataTweet') === null) {
       let dataTweet = [];
       dataTweet.push(object);
       localStorage.setItem('DataTweet', JSON.stringify(dataTweet));
+      setTweet(ReadTweet());
     } else {
       let dataTweet = JSON.parse(localStorage.getItem('DataTweet'));
       dataTweet.push(object);
       localStorage.setItem('DataTweet', JSON.stringify(dataTweet));
+      setTweet(ReadTweet());
     }
   }
 
@@ -63,26 +66,46 @@ export function DataContextProvider(props) {
       let dataUser = [];
       dataUser.push(obj);
       localStorage.setItem('DataUser', JSON.stringify(dataUser));
+      setData(ReadData());
     } else {
       let dataUser = JSON.parse(localStorage.getItem('DataUser'));
       dataUser.push(obj);
       localStorage.setItem('DataUser', JSON.stringify(dataUser));
+      setData(ReadData());
     }
   }
 
   function VerifyUser(user, pwd) {
-    let a = dataUser.filter((i) => i.user !== user && i.pwd !== pwd);
-    if (a.length < dataUser.length) {
-      SesionActually.username = user;
-      SesionActually.sesion = true;
-      a = dataUser.filter((i) => i.user === user && i.pwd === pwd);
-      SesionActually.icon = a[0].icon;
-      return true;
+    if (localStorage.getItem('DataUser') === null) {
+      alert('No Login');
     } else {
-      alert('No inciaste');
-      SesionActually.username = null;
-      SesionActually.sesion = false;
-      return false;
+      let d = dataUsers.filter(
+        (element) => element.user === user && element.pwd === pwd
+      );
+      if (d.length == 1) {
+        if (localStorage.getItem('Sesion') === null) {
+          let SesionActually = {
+            username: user,
+            sesion: true,
+            icon: d[0].icon,
+          };
+          localStorage.setItem('Sesion', JSON.stringify(SesionActually));
+          setData(ReadData());
+        } else {
+          let SesionActually = {
+            username: null,
+            sesion: false,
+            icon: null,
+          };
+          let dataUser = JSON.parse(localStorage.getItem('Sesion'));
+          dataUser = SesionActually;
+          localStorage.setItem('Sesion', JSON.stringify(dataUser));
+          setData(ReadData());
+        }
+        window.location.href = '/Home';
+      } else {
+        alert('No Login');
+      }
     }
   }
 
@@ -93,7 +116,14 @@ export function DataContextProvider(props) {
 
   return (
     <dataContext.Provider
-      value={{ dataUser, VerifyUser, CreateUser, SesionActually }}
+      value={{
+        dataUsers,
+        VerifyUser,
+        CreateUser,
+        CreateTweet,
+        dataTweets,
+        Log_Out,
+      }}
     >
       {props.children}
     </dataContext.Provider>
