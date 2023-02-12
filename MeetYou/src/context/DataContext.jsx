@@ -1,5 +1,7 @@
 import { createContext, useState, useEffect } from 'react';
 import uuid from 'react-uuid';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 export const dataContext = createContext();
 
@@ -46,6 +48,13 @@ export function DataContextProvider(props) {
         tweets.splice(index, 1);
         localStorage.setItem('DataTweet', JSON.stringify(tweets));
         setTweet(ReadTweet());
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Eliminado con exito',
+          showConfirmButton: false,
+          timer: 1000,
+        });
       }
     });
   }
@@ -58,10 +67,24 @@ export function DataContextProvider(props) {
           tweets[index].favorite = false;
           localStorage.setItem('DataTweet', JSON.stringify(tweets));
           setTweet(ReadTweet());
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Eliminado de Favoritos',
+            showConfirmButton: false,
+            timer: 1500,
+          });
         } else if (tweets[index].favorite === false) {
           tweets[index].favorite = true;
           localStorage.setItem('DataTweet', JSON.stringify(tweets));
           setTweet(ReadTweet());
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Agregado a favoritos',
+            showConfirmButton: false,
+            timer: 1000,
+          });
         }
       }
     });
@@ -84,11 +107,25 @@ export function DataContextProvider(props) {
       dataTweet.push(object);
       localStorage.setItem('DataTweet', JSON.stringify(dataTweet));
       setTweet(ReadTweet());
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Tu Tweet ha sido cargado',
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } else {
       let dataTweet = JSON.parse(localStorage.getItem('DataTweet'));
       dataTweet.push(object);
       localStorage.setItem('DataTweet', JSON.stringify(dataTweet));
       setTweet(ReadTweet());
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Tu Tweet ha sido cargado',
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   }
 
@@ -159,7 +196,13 @@ export function DataContextProvider(props) {
         }
         window.location.href = '/Home';
       } else {
-        alert('No Login');
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Parece que los datos son incorrectos...',
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     }
   }

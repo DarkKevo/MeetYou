@@ -10,6 +10,10 @@ export function Home() {
   const { CreateTweet, Log_Out, Favorite_Render, MyRender, Default_Render } =
     useContext(dataContext);
 
+  window.onbeforeunload = function () {
+    Log_Out()
+  };
+
   const agregar = (e) => {
     e.preventDefault();
     let Sesion = JSON.parse(localStorage.getItem('Sesion'));
