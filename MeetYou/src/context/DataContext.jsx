@@ -11,14 +11,23 @@ export function DataContextProvider(props) {
   function Favorite_Render() {
     let a = JSON.parse(localStorage.getItem('DataTweet'));
     setTweet(a);
-    setTweet(a.filter((element) => element.favorite === true));
+    if (localStorage.getItem('DataTweet') === null) {
+      setTweet(a.filter((element) => element.favorite === true));
+    } else {
+      setTweet(a.filter((element) => element.favorite === true).reverse());
+    }
   }
 
   function MyRender() {
     let a = JSON.parse(localStorage.getItem('DataTweet'));
     setTweet(a);
-    let data = JSON.parse(localStorage.getItem('Sesion'));
-    setTweet(a.filter((element) => element.user === data.username));
+    if (localStorage.getItem('DataTweet') === null) {
+      let data = JSON.parse(localStorage.getItem('Sesion'));
+      setTweet(a.filter((element) => element.user === data.username));
+    } else {
+      let data = JSON.parse(localStorage.getItem('Sesion'));
+      setTweet(a.filter((element) => element.user === data.username).reverse());
+    }
   }
 
   function Default_Render() {
@@ -28,6 +37,17 @@ export function DataContextProvider(props) {
   function Log_Out() {
     localStorage.removeItem('Sesion');
     window.location.href = '/';
+  }
+
+  function Delete(id) {
+    let tweets = JSON.parse(localStorage.getItem('DataTweet'));
+    tweets.forEach((e, index) => {
+      if (e.id === id) {
+        tweets.splice(index, 1);
+        localStorage.setItem('DataTweet', JSON.stringify(tweets));
+        setTweet(ReadTweet());
+      }
+    });
   }
 
   function Favorite(id) {
@@ -74,7 +94,11 @@ export function DataContextProvider(props) {
 
   function ReadTweet() {
     let data = JSON.parse(localStorage.getItem('DataTweet'));
-    return data;
+    if (localStorage.getItem('DataTweet') === null) {
+      return data;
+    } else {
+      return data.reverse();
+    }
   }
 
   function ReadData() {
@@ -158,6 +182,7 @@ export function DataContextProvider(props) {
         Favorite_Render,
         MyRender,
         Default_Render,
+        Delete,
       }}
     >
       {props.children}

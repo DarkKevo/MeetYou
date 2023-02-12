@@ -54,6 +54,7 @@ export function Home() {
               type='text'
               placeholder='Escribe algo'
               value={tweet}
+              required
             />
             <button id='publicar-button'>PUBLICAR</button>
           </form>

@@ -40,9 +40,11 @@ export function LoginCreate() {
                 setUser(e.target.value);
               }}
               type='text'
+              maxLength='18'
               placeholder='Usuario'
               value={user}
-              id="input-f"
+              id='input-f'
+              required
             />
             <input
               onChange={function (e) {
@@ -51,7 +53,8 @@ export function LoginCreate() {
               type='password'
               placeholder='Contraseña'
               value={pwd}
-              id="input-f"
+              id='input-f'
+              required
             />
             <input
               onChange={function (e) {
@@ -60,12 +63,15 @@ export function LoginCreate() {
               type='text'
               placeholder='Icon URL'
               value={icon}
-              id="input-f"
+              id='input-f'
+              required
             />
           </div>
           <div className='container-buttons'>
             <button id='create'>Crear Cuenta</button>
-            <button id='login'>Iniciar Sesion</button>
+            <a link href='/' id='login'>
+              Iniciar Sesion
+            </a>
           </div>
         </form>
         <div className='visor'>

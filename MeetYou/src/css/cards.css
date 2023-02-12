@@ -61,10 +61,20 @@ p {
 }
 
 #like {
-  font-size: 35px;
+  font-size: 30px;
   transition: 0.3s;
 }
 
+#delete {
+  font-size: 30px;
+  transition: 0.3s;
+  color: #9c9999;
+}
+
+#delete:hover {
+  color: white;
+  cursor: pointer;
+}
 
 #like:hover {
   color: white;

@@ -22,7 +22,7 @@ export function Login() {
         <img id='Imgnav' src='./src/assets/meetYou.png' />
       </nav>
       <div className='form-container'>
-        <form>
+        <form onSubmit={verify}>
           <div className='container-inputs'>
             <h2>Iniciar Sesion</h2>
             <input
@@ -32,7 +32,9 @@ export function Login() {
               type='text'
               placeholder='Usuario'
               value={user}
-              id="input-f"
+              id='input-f'
+              maxLength='18'
+              required
             />
             <input
               onChange={(e) => {
@@ -41,16 +43,15 @@ export function Login() {
               type='password'
               placeholder='Contraseña'
               value={pwd}
-              id="input-f"
+              id='input-f'
+              required
             />
           </div>
           <div className='container-buttons'>
             <a href='/Create' id='create'>
               Crear Cuenta
             </a>
-            <button id='login' onClick={verify}>
-              Iniciar Sesion
-            </button>
+            <button id='login'>Iniciar Sesion</button>
           </div>
         </form>
       </div>
