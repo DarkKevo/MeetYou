@@ -196,3 +196,17 @@
 #NoTweets {
   margin-top: 20vh;
 }
+
+.Sesion-Verify {
+  width: 100%;
+  height: 100vh;
+  background-color: #434972;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Sesion-Verify h2 {
+  font-size: 40px
+}
