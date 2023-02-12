@@ -1,15 +1,47 @@
 import { createContext, useState, useEffect } from 'react';
+import uuid from 'react-uuid';
 
 export const dataContext = createContext();
 
 export function DataContextProvider(props) {
   const [dataUser, setData] = useState([]);
+  const [dataTweet, setTweet] = useState([]);
 
   var SesionActually = {
     username: null,
     sesion: false,
     icon: null,
   };
+
+  function CreateTweet(text) {
+    let date = new Date();
+    let data_time = `${date.getDate}/${date.getMonth}/${date.getFullYear} a las ${date.getHours}:${date.getMinutes}`;
+    let object = {
+      text: text,
+      time: data_time,
+      favorite: false,
+      id: none,
+    };
+
+    if (localStorage.getItem('DataTweet') === null) {
+      let dataTweet = [];
+      dataTweet.push(object);
+      localStorage.setItem('DataTweet', JSON.stringify(dataTweet));
+    } else {
+      let dataTweet = JSON.parse(localStorage.getItem('DataTweet'));
+      dataTweet.push(object);
+      localStorage.setItem('DataTweet', JSON.stringify(dataTweet));
+    }
+  }
+
+  function ReadTweet() {
+    if (localStorage.getItem('DataTweet') === null) {
+      return;
+    } else {
+      let data = JSON.parse(localStorage.getItem('DataTweet'));
+      return data;
+    }
+  }
 
   function ReadData() {
     if (localStorage.getItem('DataUser') === null) {
@@ -56,6 +88,7 @@ export function DataContextProvider(props) {
 
   useEffect(() => {
     setData(ReadData());
+    setTweet(ReadTweet());
   }, []);
 
   return (

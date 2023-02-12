@@ -48,7 +48,7 @@ form {
   border-radius: 5px;
 }
 
-input {
+#input-f {
   margin-top: 1.5rem;
   font-family: 'Inter', sans-serif;
   background-color: #252243;
@@ -59,11 +59,11 @@ input {
   color: #39c;
 }
 
-input:focus {
+#input-f:focus {
   outline: 3px solid;
 }
 
-input::placeholder {
+#input-f::placeholder {
   color: #39c;
 }
 

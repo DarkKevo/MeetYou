@@ -26,6 +26,18 @@ export function Home() {
           </button>
         </div>
       </nav>
+      <div className='Form-Tweet'>
+        <img
+          id='Img-Tweet'
+          src='https://cdn-icons-png.flaticon.com/512/1484/1484867.png'
+        />
+        <div className='form-tweet-container'>
+          <form>
+            <input id='tweet-input' type='text' placeholder='Escribe algo' />
+            <button id='publicar-button'>PUBLICAR</button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

@@ -42,6 +42,7 @@ export function LoginCreate() {
               type='text'
               placeholder='Usuario'
               value={user}
+              id="input-f"
             />
             <input
               onChange={function (e) {
@@ -50,6 +51,7 @@ export function LoginCreate() {
               type='password'
               placeholder='Contraseña'
               value={pwd}
+              id="input-f"
             />
             <input
               onChange={function (e) {
@@ -58,6 +60,7 @@ export function LoginCreate() {
               type='text'
               placeholder='Icon URL'
               value={icon}
+              id="input-f"
             />
           </div>
           <div className='container-buttons'>
