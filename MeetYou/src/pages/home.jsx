@@ -7,7 +7,8 @@ import { useState, useContext } from 'react';
 export function Home() {
   let Data = JSON.parse(localStorage.getItem('Sesion'));
   const [tweet, setTweet] = useState('');
-  const { CreateTweet, Log_Out } = useContext(dataContext);
+  const { CreateTweet, Log_Out, Favorite_Render, MyRender, Default_Render } =
+    useContext(dataContext);
 
   const agregar = (e) => {
     e.preventDefault();
@@ -21,15 +22,19 @@ export function Home() {
       <nav id='nav-home'>
         <div className='Nav1'>
           <img id='Img-home' src='./src/assets/meetYou.png' />
-          <button className='Nav-button'>Inicio</button>
-          <button className='Nav-button'>Favoritos</button>
+          <button className='Nav-button' onClick={Default_Render}>
+            Inicio
+          </button>
+          <button className='Nav-button' onClick={Favorite_Render}>
+            Favoritos
+          </button>
         </div>
         <div className='Nav2'>
           <div className='Image-User'>
             <img id='img-nav-icon' src={Data.icon} />
             <div className='nav-text'>
               <h3>{Data.username}</h3>
-              <button>Mis Publicaciones</button>
+              <button onClick={MyRender}>Mis Publicaciones</button>
             </div>
           </div>
           <button id='log-out' onClick={Log_Out}>

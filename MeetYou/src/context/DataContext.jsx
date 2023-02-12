@@ -7,9 +7,44 @@ export function DataContextProvider(props) {
   const [dataUsers, setData] = useState([]);
   const [dataTweets, setTweet] = useState([]);
 
+  //Funciones de los Render
+  function Favorite_Render() {
+    let a = JSON.parse(localStorage.getItem('DataTweet'));
+    setTweet(a);
+    setTweet(a.filter((element) => element.favorite === true));
+  }
+
+  function MyRender() {
+    let a = JSON.parse(localStorage.getItem('DataTweet'));
+    setTweet(a);
+    let data = JSON.parse(localStorage.getItem('Sesion'));
+    setTweet(a.filter((element) => element.user === data.username));
+  }
+
+  function Default_Render() {
+    setTweet(ReadTweet());
+  }
+
   function Log_Out() {
     localStorage.removeItem('Sesion');
     window.location.href = '/';
+  }
+
+  function Favorite(id) {
+    let tweets = JSON.parse(localStorage.getItem('DataTweet'));
+    tweets.forEach((e, index) => {
+      if (e.id === id) {
+        if (tweets[index].favorite === true) {
+          tweets[index].favorite = false;
+          localStorage.setItem('DataTweet', JSON.stringify(tweets));
+          setTweet(ReadTweet());
+        } else if (tweets[index].favorite === false) {
+          tweets[index].favorite = true;
+          localStorage.setItem('DataTweet', JSON.stringify(tweets));
+          setTweet(ReadTweet());
+        }
+      }
+    });
   }
 
   function CreateTweet(text, icon, user) {
@@ -38,12 +73,8 @@ export function DataContextProvider(props) {
   }
 
   function ReadTweet() {
-    if (localStorage.getItem('DataTweet') === null) {
-      return;
-    } else {
-      let data = JSON.parse(localStorage.getItem('DataTweet'));
-      return data;
-    }
+    let data = JSON.parse(localStorage.getItem('DataTweet'));
+    return data;
   }
 
   function ReadData() {
@@ -123,6 +154,10 @@ export function DataContextProvider(props) {
         CreateTweet,
         dataTweets,
         Log_Out,
+        Favorite,
+        Favorite_Render,
+        MyRender,
+        Default_Render,
       }}
     >
       {props.children}
