@@ -91,7 +91,7 @@ export function DataContextProvider(props) {
   }
 
   function CreateTweet(text, icon, user) {
-    let date = new Date();
+    var date = new Date();
     let data_time = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} a las ${date.getHours()}:${date.getMinutes()}`;
     let object = {
       icon: icon,
@@ -169,11 +169,15 @@ export function DataContextProvider(props) {
 
   function VerifyUser(user, pwd) {
     if (localStorage.getItem('DataUser') === null) {
-      alert('No Login');
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Parece que los datos son incorrectos...',
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } else {
-      let d = dataUsers.filter(
-        (element) => element.user === user && element.pwd === pwd
-      );
+      let d = dataUsers.filter((element) => element.user === user && element.pwd === pwd);
       if (d.length == 1) {
         if (localStorage.getItem('Sesion') === null) {
           let SesionActually = {
