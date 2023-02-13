@@ -17,7 +17,6 @@ export function LoginCreate() {
     setUser('');
     setPwd('');
     setIcon('');
-    window.location.href = '/';
   };
 
   let formulario = document.createElement('formCreate');
