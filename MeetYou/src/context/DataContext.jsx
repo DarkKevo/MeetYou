@@ -13,10 +13,11 @@ export function DataContextProvider(props) {
   function Favorite_Render() {
     let a = JSON.parse(localStorage.getItem('DataTweet'));
     setTweet(a);
+    let b = JSON.parse(localStorage.getItem('Sesion'));
     if (localStorage.getItem('DataTweet') === null) {
-      setTweet(a.filter((element) => element.favorite === true));
+      setTweet(a.filter((element) => element.favorite_to.includes(b.username)));
     } else {
-      setTweet(a.filter((element) => element.favorite === true).reverse());
+      setTweet(a.filter((element) => element.favorite_to.includes(b.username)).reverse());
     }
   }
 
@@ -60,30 +61,41 @@ export function DataContextProvider(props) {
   }
 
   function Favorite(id) {
+    let sesion = JSON.parse(localStorage.getItem('Sesion'));
     let tweets = JSON.parse(localStorage.getItem('DataTweet'));
     tweets.forEach((e, index) => {
       if (e.id === id) {
-        if (tweets[index].favorite === true) {
-          tweets[index].favorite = false;
-          localStorage.setItem('DataTweet', JSON.stringify(tweets));
+        let l = tweets[index].favorite_to.filter((e) => e === sesion.username);
+        if (l.length == 1) {
+          let r = JSON.parse(localStorage.getItem('DataTweet'));
+          r.forEach((e, p) => {
+            if (e.id == id) {
+              r[p].favorite_to.forEach((e, x) => {
+                if (e === sesion.username) {
+                  r[p].favorite_to.splice(x, 1);
+                }
+              });
+            }
+          });
+          localStorage.setItem('DataTweet', JSON.stringify(r));
           setTweet(ReadTweet());
           Swal.fire({
             position: 'center',
             icon: 'error',
-            title: 'Eliminado de Favoritos',
+            title: 'Eliminado de favoritos',
             showConfirmButton: false,
-            timer: 1500,
+            timer: 1000,
           });
-        } else if (tweets[index].favorite === false) {
-          tweets[index].favorite = true;
+        } else {
+          tweets[index].favorite_to.push(sesion.username);
           localStorage.setItem('DataTweet', JSON.stringify(tweets));
           setTweet(ReadTweet());
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Agregado a favoritos',
+            title: 'Agregado  Favoritos',
             showConfirmButton: false,
-            timer: 1000,
+            timer: 1500,
           });
         }
       }
@@ -99,6 +111,7 @@ export function DataContextProvider(props) {
       text: text,
       time: data_time,
       favorite: false,
+      favorite_to: [],
       id: uuid(),
     };
 

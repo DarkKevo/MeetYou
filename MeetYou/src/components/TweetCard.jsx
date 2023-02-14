@@ -19,14 +19,16 @@ export function TweetCard({ tweet }) {
             <p>{tweet.time}</p>
           </div>
         </div>
-        <div className='tweet-body'>{tweet.text}</div>
+        <div className='tweet-body'>
+          <p>{tweet.text}</p>
+        </div>
         <div className='Buttons-Container'>
           <button
             className='boton-tweet'
             onClick={(e) => {
               Favorite(tweet.id);
             }}
-            style={tweet.favorite ? { color: 'white' } : { color: 'rgb(145, 145, 145)' }}
+            style={tweet.favorite_to.includes(a.username) ? { color: 'white' } : { color: 'rgb(145, 145, 145)' }}
           >
             <FontAwesomeIcon id='like' icon={faThumbsUp} />
           </button>
@@ -51,14 +53,16 @@ export function TweetCard({ tweet }) {
             <p>{tweet.time}</p>
           </div>
         </div>
-        <div className='tweet-body'>{tweet.text}</div>
+        <div className='tweet-body'>
+          <p>{tweet.text}</p>
+        </div>
         <div className='Buttons-Container'>
           <button
             className='boton-tweet'
             onClick={(e) => {
               Favorite(tweet.id);
             }}
-            style={tweet.favorite ? { color: 'white' } : { color: 'rgb(145, 145, 145)' }}
+            style={tweet.favorite_to.includes(a.username) ? { color: 'white' } : { color: 'rgb(145, 145, 145)' }}
           >
             <FontAwesomeIcon id='like' icon={faThumbsUp} />
           </button>

@@ -50,6 +50,7 @@ p {
   color: white;
   margin: 5px;
   font-family: 'Inter', sans-serif;
+  line-break: anywhere;
 }
 
 #like {
