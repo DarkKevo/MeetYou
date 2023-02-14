@@ -1,35 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
-
 /*Navbar*/
-
-.Home-Container {
-  display: flex;
-  flex-direction: column;
+.nav-home {
   align-items: center;
-}
-
-#nav-home {
-  box-shadow: 0px 12px 8px #121212;
-  width: 100%;
-  height: 10vh;
+  background-color: #1b1b1b;
   display: flex;
+  box-shadow: 0px 12px 8px #121212;
   flex-direction: row;
+  height: 10vh;
+  justify-content: space-between;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  justify-content: space-between;
-  align-items: center;
+  width: 100%;
 }
-
-.Nav1 {
+.navbar {
+  position: sticky;
+  top: 0;
+}
+.navbar .logo {
+  display: none;
+}
+.nav-items {
   display: flex;
-  flex-direction: row;
-  width: 45%;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  width: 100%;
+}
+#log-check {
+  display: none;
+}
+.user-label-icon {
+  width: 3rem;
+}
+.user-log {
+  display: none;
+}
+#log-check:checked ~ .user-log {
   align-items: center;
+  display: flex;
+  background-color: #1b1b1b;
+  box-shadow: 0px 12px 8px #121212;
+  flex-direction: row;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  left: 0;
 }
 
-.Nav-button {
+.nav-button {
   font-size: 20px;
   color: rgb(96, 174, 212);
   border: none;
@@ -40,24 +55,11 @@
   border-radius: 5px;
 }
 
-.Nav-button:hover {
+.nav-button:hover {
   background-color: #272626;
 }
-
-.Nav2 {
-  display: flex;
-  flex-direction: row;
-  width: 35%;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.Image-User {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  width: 55%;
+.nav-button span {
+  display: none;
 }
 
 .nav-text {
@@ -65,9 +67,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  margin: 0.5rem;
 }
 
-.nav-text h3 {
+.nav-text p {
   margin: 0;
   font-size: 22px;
   font-family: 'Orbitron', sans-serif;
@@ -75,7 +78,7 @@
 
 .nav-text button {
   margin: 0;
-  font-size: 15px;
+  font-size: 0.8rem;
   background-color: transparent;
   border: none;
   padding: 0;
@@ -89,23 +92,19 @@
   background-color: #272626;
 }
 
-#Img-home {
-  height: 8vh;
-}
-
 #img-nav-icon {
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   border-radius: 160px;
   border: 3px solid #666;
 }
 
 #log-out {
+  color: #74deed;
+  font-size: 1.5rem;
   background-color: transparent;
+  outline: none;
   border: none;
-  padding: 0.5rem;
-  border-radius: 5px;
-  transition: 0.5s;
 }
 
 #log-out:hover {
@@ -116,36 +115,25 @@
   height: 42px;
   width: 42px;
 }
-
-/*Home Form*/
-
-.Form-Tweet {
-  width: 60%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  padding-top: 0.2rem;
-  padding-bottom: 0.2rem;
-  margin-top: 1.5rem;
-  background-color: #74deed;
-  border-radius: 5px;
-}
-
-#Img-Tweet {
+.img-tweet {
   width: 50px;
   height: 50px;
   border-radius: 160px;
   border: 3px solid #666;
 }
-
+.img-tweet.card {
+  border: 3px solid #74deed;
+}
 #tweet-input {
   border: none;
   padding: 0.5rem;
+  margin: 0 0.3rem;
   border-radius: 5px;
-  font-size: 20px;
+  width: 100%;
 }
-
+#tweet-input:focus {
+  outline: 2px solid #39c;
+}
 #publicar-button {
   border: none;
   background-color: #363e6f;
@@ -154,41 +142,32 @@
   color: #74deed;
   border-radius: 5px;
   transition: 0.5s;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+  width: 100%;
 }
-
 #publicar-button:hover {
   background-color: #434972;
 }
-
-.form-tweet-container {
-  width: 85%;
-}
-
-.form-tweet-container form {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
+.tweet-container {
   align-items: center;
-  justify-content: space-around;
-}
-
-.form-tweet-container form input {
-  width: 60%;
-}
-
-.form-tweet-container form button {
-  width: 35%;
-}
-
-.TweetList {
-  width: 60%;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 2rem;
+  margin: 1rem auto;
+  justify-content: space-around;
+  padding: 0.5rem;
+}
+.tweet-container.new {
+  margin: 1rem;
+  background-color: #74deed;
+}
+.tweet-input-group {
+  display: flex;
+  width: 100%;
 }
 
+/* Lista de tweets */
 .container-cards {
   width: 100%;
 }
@@ -197,7 +176,7 @@
   margin-top: 20vh;
 }
 
-.Sesion-Verify {
+.sesion-verify {
   width: 100%;
   height: 100vh;
   background-color: #434972;
@@ -207,6 +186,82 @@
   justify-content: center;
 }
 
-.Sesion-Verify h2 {
-  font-size: 40px
+.sesion-verify h2 {
+  font-size: 40px;
+}
+
+@media screen and (min-width: 576px) {
+  .navbar .logo {
+    display: block;
+  }
+  .Home-Container > .logo {
+    display: none;
+  }
+  .log-label {
+    display: none;
+  }
+  .user-log {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .navbar {
+    display: flex;
+    justify-content: center;
+    background-color: #1b1b1b;
+    box-shadow: 0px 12px 8px #121212;
+  }
+  .nav-home {
+    position: sticky;
+    top: 0;
+    background-color: transparent;
+    box-shadow: none;
+    width: calc(100vw / 1.4);
+    height: auto;
+  }
+  .nav-button svg {
+    display: none;
+  }
+  .nav-button span {
+    display: block;
+  }
+  .nav-items {
+    align-items: center;
+    justify-content: start;
+  }
+  .nav-items li:last-child {
+    width: 100%;
+  }
+  .tweet-container {
+    width: calc(100vw / 1.3);
+  }
+  .tweet-container.new {
+    flex-direction: row;
+  }
+  .tweet-container.new {
+    margin: 1rem auto;
+  }
+  #publicar-button {
+    padding: 0.8rem;
+    margin: 0 auto;
+    width: fit-content;
+  }
+  .nav-text {
+    margin-left: 1.5rem;
+    margin-right: 2rem;
+  }
+  .boton-tweet {
+    margin: 0.5rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .tweet-container {
+    width: calc(100vw / 1.6);
+  }
+}
+@media screen and (min-width: 992px) {
+  .tweet-container {
+    width: calc(100vw / 2);
+  }
+  
 }

@@ -13,7 +13,7 @@ export function TweetCard({ tweet }) {
     return (
       <div id='TweetCard-contain'>
         <div className='icon-name-tweet'>
-          <img id='Img-Tweet-card' src={tweet.icon} />
+          <img className='img-tweet card' src={tweet.icon} />
           <div className='icon-name-body'>
             <h3>{tweet.user}</h3>
             <p>{tweet.time}</p>
@@ -22,18 +22,16 @@ export function TweetCard({ tweet }) {
         <div className='tweet-body'>{tweet.text}</div>
         <div className='Buttons-Container'>
           <button
+            className='boton-tweet'
             onClick={(e) => {
               Favorite(tweet.id);
             }}
-            style={
-              tweet.favorite
-                ? { color: 'white' }
-                : { color: 'rgb(145, 145, 145)' }
-            }
+            style={tweet.favorite ? { color: 'white' } : { color: 'rgb(145, 145, 145)' }}
           >
             <FontAwesomeIcon id='like' icon={faThumbsUp} />
           </button>
           <button
+            className='boton-tweet'
             onClick={(e) => {
               Delete(tweet.id);
             }}
@@ -47,7 +45,7 @@ export function TweetCard({ tweet }) {
     return (
       <div id='TweetCard-contain'>
         <div className='icon-name-tweet'>
-          <img id='Img-Tweet-card' src={tweet.icon} />
+          <img className='img-tweet card' src={tweet.icon} />
           <div className='icon-name-body'>
             <h3>{tweet.user}</h3>
             <p>{tweet.time}</p>
@@ -55,6 +53,15 @@ export function TweetCard({ tweet }) {
         </div>
         <div className='tweet-body'>{tweet.text}</div>
         <div className='Buttons-Container'>
+          <button
+            className='boton-tweet'
+            onClick={(e) => {
+              Favorite(tweet.id);
+            }}
+            style={tweet.favorite ? { color: 'white' } : { color: 'rgb(145, 145, 145)' }}
+          >
+            <FontAwesomeIcon id='like' icon={faThumbsUp} />
+          </button>
         </div>
       </div>
     );

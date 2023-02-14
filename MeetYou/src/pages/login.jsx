@@ -17,7 +17,7 @@ export function Login() {
   };
 
   return (
-    <div className='login-container'>
+    <>
       <nav id='nav-login'>
         <img id='Imgnav' src='./src/assets/meetYou.png' />
       </nav>
@@ -48,13 +48,13 @@ export function Login() {
             />
           </div>
           <div className='container-buttons'>
-            <a href='/Create' id='create'>
+            <a href='/Create' id='create' className='d-block'>
               Crear Cuenta
             </a>
-            <button id='login'>Iniciar Sesion</button>
+            <button id='login' className='d-block'>Iniciar Sesion</button>
           </div>
         </form>
       </div>
-    </div>
+    </>
   );
 }

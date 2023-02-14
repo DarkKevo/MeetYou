@@ -160,24 +160,10 @@ export function DataContextProvider(props) {
       localStorage.setItem('DataUser', JSON.stringify(dataUser));
       setData(ReadData());
     } else {
-      let data = JSON.parse(localStorage.getItem('DataUser'));
-      let d = data.filter((element) => element.user === user);
-      if (d.length == 1) {
-        Swal.fire({
-          position: 'center',
-          icon: 'error',
-          title: 'Nombre ya Registrado',
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        return;
-      } else {
-        let dataUser = JSON.parse(localStorage.getItem('DataUser'));
-        dataUser.push(obj);
-        localStorage.setItem('DataUser', JSON.stringify(dataUser));
-        setData(ReadData());
-        window.location.href = '/';
-      }
+      let dataUser = JSON.parse(localStorage.getItem('DataUser'));
+      dataUser.push(obj);
+      localStorage.setItem('DataUser', JSON.stringify(dataUser));
+      setData(ReadData());
     }
   }
 
